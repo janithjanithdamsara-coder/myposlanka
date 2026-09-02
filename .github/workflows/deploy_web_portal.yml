@@ -8,6 +8,9 @@ on:
       - '.github/workflows/deploy_web_portal.yml'
   workflow_dispatch:
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   lint:
     name: 🔍 PHP Syntax & Security Lint
@@ -48,8 +51,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          security: loose
           local-dir: ./web_portal/
-          server-dir: ${{ secrets.FTP_REMOTE_DIR || '/public_html/' }}
+          server-dir: ${{ secrets.FTP_REMOTE_DIR || 'public_html/' }}
           dangerous-clean-slate: false
           exclude: |
             **/.git*
