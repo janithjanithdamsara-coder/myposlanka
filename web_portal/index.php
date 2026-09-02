@@ -113,16 +113,6 @@ $apk_url = !empty($config['apk_download_url']) ? $config['apk_download_url'] : '
   </style>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-  <!-- 🚨 TOP BIG TEST H1 BANNER -->
-  <div class="bg-red-600 text-white text-center py-4 px-4 shadow-2xl border-b-4 border-yellow-400">
-    <h1 class="text-2xl sm:text-4xl font-black tracking-widest uppercase animate-pulse">
-      🔥 TEST: LIVE CI/CD DEPLOYMENT SUCCESSFUL 🔥
-    </h1>
-    <p class="text-xs sm:text-sm font-bold text-yellow-300 mt-1">
-      මෙම වෙබ් අඩවිය GitHub Actions හරහා ස්වයංක්‍රීයව Live Update විය!
-    </p>
-  </div>
-
   <!-- HEADER / TOP NAV (No Direct APK Download, Directs to Trial) -->
   <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between">
@@ -224,12 +214,6 @@ $apk_url = !empty($config['apk_download_url']) ? $config['apk_download_url'] : '
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-900/90 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase tracking-wider shadow">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
           ⚡ 100% Offline-First POS System
-        </div>
-
-        <!-- 🚀 LIVE UPDATE TEST BANNER -->
-        <div class="p-3 bg-amber-400 text-slate-950 font-black text-center text-xs sm:text-sm shadow-lg rounded-2xl border-2 border-amber-300 flex items-center justify-center gap-2">
-          <i class="fa-solid fa-bolt text-slate-900 text-base"></i>
-          <span>GitHub CI/CD Live Auto-Update Verified! (පද්ධතිය සාර්ථකව Live Update විය)</span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
