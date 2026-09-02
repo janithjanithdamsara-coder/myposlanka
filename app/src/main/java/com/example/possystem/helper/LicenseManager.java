@@ -313,14 +313,15 @@ public class LicenseManager {
     // When hosting on cPanel / Cloud VPS, simply enter your live API URL below:
     // Example: "https://yourdomain.com/api/check_license.php"
     // =========================================================================
-    public static final String PRODUCTION_SERVER_URL = ""; 
+    public static final String PRODUCTION_SERVER_URL = "http://myposlanka.sahashrajanith.site/api/check_license.php"; 
 
     private static final String[] SERVER_ENDPOINTS = {
             PRODUCTION_SERVER_URL,
+            "https://myposlanka.sahashrajanith.site/api/check_license.php",
+            "http://myposlanka.sahashrajanith.site/api/check_license.php",
             "http://10.0.2.2/possystem/api/check_license.php",       // Android Emulator Loopback
             "http://10.190.222.16/possystem/api/check_license.php",  // Current Local Wi-Fi IP
             "http://192.168.8.162/possystem/api/check_license.php",  // Local Wi-Fi / LAN IP
-            "http://10.4.2.2/possystem/api/check_license.php",       // Local Interface
             "http://localhost/possystem/api/check_license.php"       // Local Device
     };
 
