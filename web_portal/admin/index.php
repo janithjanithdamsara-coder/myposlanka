@@ -643,7 +643,14 @@ foreach ($agents as $a) {
                     <?php
                       $clean_p = preg_replace('/[^0-9]/', '', $s['phone']);
                       if (strpos($clean_p, '0') === 0) $clean_p = '94' . substr($clean_p, 1);
-                      $apk_link = !empty($config['apk_download_url']) ? $config['apk_download_url'] : ("http://" . ($_SERVER['HTTP_HOST'] ?? 'localhost') . "/possystem/downloads/possystem.apk");
+                      $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+                      $protocol = $is_https ? "https://" : "http://";
+                      $host_url = $protocol . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+                      $admin_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+                      $root_dir = rtrim(dirname($admin_dir), '/\\');
+                      if ($root_dir === '/' || $root_dir === '\\') $root_dir = '';
+                      $dynamic_apk = $host_url . $root_dir . '/downloads/possystem.apk';
+                      $apk_link = (!empty($config['apk_download_url']) && strpos($config['apk_download_url'], 'http') === 0) ? $config['apk_download_url'] : $dynamic_apk;
                       $quick_msg = urlencode("🎉 *Store License & APK Download - POS Lanka*\n\n"
                         . "🏪 *Store:* {$s['shop_name']}\n"
                         . "🔑 *Store ID:* {$s['shop_id']}\n"
@@ -1422,7 +1429,14 @@ foreach ($agents as $a) {
 
   <!-- VOUCHER POPUP IF GENERATED -->
   <?php if ($voucher_data): 
-    $apk_download = !empty($config['apk_download_url']) ? $config['apk_download_url'] : ("http://" . ($_SERVER['HTTP_HOST'] ?? 'localhost') . "/possystem/downloads/possystem.apk");
+    $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    $protocol = $is_https ? "https://" : "http://";
+    $host_url = $protocol . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+    $admin_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+    $root_dir = rtrim(dirname($admin_dir), '/\\');
+    if ($root_dir === '/' || $root_dir === '\\') $root_dir = '';
+    $dynamic_apk = $host_url . $root_dir . '/downloads/possystem.apk';
+    $apk_download = (!empty($config['apk_download_url']) && strpos($config['apk_download_url'], 'http') === 0) ? $config['apk_download_url'] : $dynamic_apk;
     $clean_phone = preg_replace('/[^0-9]/', '', $voucher_data['phone'] ?? '');
     if (strpos($clean_phone, '0') === 0) $clean_phone = '94' . substr($clean_phone, 1);
 

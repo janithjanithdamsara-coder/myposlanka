@@ -10,5 +10,6 @@ app/build/
 .cxx
 local.properties
 *.apk
+!web_portal/downloads/*.apk
 *.log
 

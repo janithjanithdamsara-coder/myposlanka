@@ -146,7 +146,13 @@ $apk_url = !empty($config['apk_download_url']) ? $config['apk_download_url'] : '
     $clean_phone = preg_replace('/[^0-9]/', '', $generated_shop['phone'] ?? '');
     if (strpos($clean_phone, '0') === 0) $clean_phone = '94' . substr($clean_phone, 1);
     
-    $user_apk_link = (strpos($apk_url, 'http') === 0) ? $apk_url : ("http://" . ($_SERVER['HTTP_HOST'] ?? 'localhost') . "/possystem/" . ltrim($apk_url, '/'));
+    $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    $protocol = $is_https ? "https://" : "http://";
+    $host_url = $protocol . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+    $script_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+    if ($script_dir === '/' || $script_dir === '\\') $script_dir = '';
+    
+    $user_apk_link = (strpos($apk_url, 'http') === 0) ? $apk_url : ($host_url . $script_dir . '/' . ltrim($apk_url, '/'));
     $user_wa_msg = urlencode("🎉 *My POS Free Trial License - POS Lanka*\n\n"
       . "🏪 *Store:* {$generated_shop['shop_name']}\n"
       . "🔑 *Store ID:* {$generated_shop['shop_id']}\n"
