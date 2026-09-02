@@ -59,3 +59,13 @@ jobs:
             **/.git*
             **/.git*/**
             **/schema.sql
+            **/css/**
+            **/images/**
+            **/js/**
+            **/*.html
+            **/*.pdf
+            **/*.md
+            sakwa_*
+            css/**
+            images/**
+            js/**
