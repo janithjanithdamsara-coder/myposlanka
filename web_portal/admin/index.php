@@ -526,85 +526,81 @@ foreach ($agents as $a) {
       </section>
 
       <!-- ======================================================== -->
-      <!-- 🏪 TAB 2: STORES & LICENSES (ENHANCED SAAS CONTROL) -->
+      <!-- 🏪 TAB 2: STORES & LICENSES (SPACE-OPTIMIZED, NO DOUBLE SCROLLBARS) -->
       <!-- ======================================================== -->
-      <section id="tab-stores" class="tab-content space-y-4">
+      <section id="tab-stores" class="tab-content space-y-3">
         
         <!-- Header & Action Ribbon -->
-        <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-          <div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
-                <i class="fa-solid fa-store"></i>
-              </div>
-              <div>
-                <h3 class="text-base font-extrabold text-slate-900">Client Stores &amp; POS Licenses</h3>
-                <p class="text-xs text-slate-500">Manage client subscriptions, industry modes (Pharmacy/Retail), bills &amp; features</p>
-              </div>
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
+              <i class="fa-solid fa-store"></i>
+            </div>
+            <div>
+              <h3 class="text-sm font-extrabold text-slate-900">Client Stores &amp; POS Licenses</h3>
+              <p class="text-[11px] text-slate-500">Manage client subscriptions, industry modes, receipts &amp; features</p>
             </div>
           </div>
 
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <span class="px-3.5 py-1.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200 flex items-center gap-1.5">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="px-3 py-1 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200 flex items-center gap-1.5">
               <i class="fa-solid fa-cubes text-emerald-600"></i> <?= count($stores) ?> Total Stores
             </span>
-            <button onclick="openAddStoreModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center gap-2">
-              <i class="fa-solid fa-plus text-amber-300"></i> + Add New Client Store
+            <button onclick="openAddStoreModal()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+              <i class="fa-solid fa-plus text-amber-300"></i> + Add New Store
             </button>
           </div>
         </div>
 
         <!-- Real-time Filter & Search Ribbon -->
-        <div class="bg-white rounded-3xl p-4 shadow-sm border border-slate-200 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+        <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2.5">
           
           <!-- Search Box -->
           <div class="relative flex-1">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
             <input type="text" id="storeSearchInput" onkeyup="filterStoreTable()" placeholder="Search stores by ID, Name, Phone, Owner, City..." 
-                   class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none placeholder:text-slate-400" />
+                   class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none placeholder:text-slate-400" />
           </div>
 
           <!-- Category Filter -->
-          <div class="flex items-center gap-2">
-            <label class="text-xs font-bold text-slate-600 whitespace-nowrap"><i class="fa-solid fa-shapes text-emerald-600 mr-1"></i> Industry:</label>
-            <select id="storeCategoryFilter" onchange="filterStoreTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
-              <option value="ALL">🌐 All Modes (සියල්ල)</option>
-              <option value="PHARMACY">💊 Pharmacy (ඖෂධහල්)</option>
-              <option value="RETAIL">🛒 Retail &amp; Supermarket (සිල්ලර)</option>
-              <option value="RESTAURANT">🍽️ Restaurant &amp; Cafe (ආපනශාලා)</option>
-              <option value="FASHION">👗 Fashion &amp; Boutique (රෙදිපිළි)</option>
-              <option value="HARDWARE">🔨 Hardware (දෘඩාංග)</option>
+          <div class="flex items-center gap-1.5">
+            <label class="text-[11px] font-bold text-slate-600 whitespace-nowrap"><i class="fa-solid fa-shapes text-emerald-600 mr-1"></i> Industry:</label>
+            <select id="storeCategoryFilter" onchange="filterStoreTable()" class="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+              <option value="ALL">🌐 All Modes</option>
+              <option value="PHARMACY">💊 Pharmacy</option>
+              <option value="RETAIL">🛒 Retail &amp; Supermarket</option>
+              <option value="RESTAURANT">🍽️ Restaurant &amp; Cafe</option>
+              <option value="FASHION">👗 Fashion</option>
+              <option value="HARDWARE">🔨 Hardware</option>
             </select>
           </div>
 
           <!-- Status Filter -->
-          <div class="flex items-center gap-2">
-            <label class="text-xs font-bold text-slate-600 whitespace-nowrap"><i class="fa-solid fa-filter text-slate-400 mr-1"></i> Status:</label>
-            <select id="storeStatusFilter" onchange="filterStoreTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+          <div class="flex items-center gap-1.5">
+            <label class="text-[11px] font-bold text-slate-600 whitespace-nowrap"><i class="fa-solid fa-filter text-slate-400 mr-1"></i> Status:</label>
+            <select id="storeStatusFilter" onchange="filterStoreTable()" class="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
               <option value="ALL">All Status</option>
-              <option value="ACTIVE">🟢 Active Stores</option>
-              <option value="EXPIRED">🔴 Expired / Locked</option>
-              <option value="PAID">🔵 Paid Plans</option>
-              <option value="TRIAL">🟡 Free Trials</option>
+              <option value="ACTIVE">🟢 Active</option>
+              <option value="EXPIRED">🔴 Expired</option>
+              <option value="PAID">🔵 Paid</option>
+              <option value="TRIAL">🟡 Trial</option>
             </select>
           </div>
 
         </div>
 
-        <!-- Stores Table Card -->
-        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="overflow-x-auto max-h-[720px] overflow-y-auto">
+        <!-- Stores Table Card (Compact, Responsive, No Horizontal/Inner Vertical Scrollbar) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="w-full">
             <table class="w-full text-left text-xs border-collapse">
-              <thead class="bg-slate-100 text-slate-700 uppercase font-extrabold border-b border-slate-200 sticky top-0 z-10 shadow-sm">
+              <thead class="bg-slate-100 text-slate-700 uppercase font-extrabold border-b border-slate-200 text-[11px]">
                 <tr>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Store ID &amp; Mode</th>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Store &amp; Location</th>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Owner &amp; Contact</th>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Reseller / Agent</th>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Plan &amp; Fee</th>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Due Date (අවසන් දිනය)</th>
-                  <th class="px-5 py-3.5 whitespace-nowrap">Live Status</th>
-                  <th class="px-5 py-3.5 text-right whitespace-nowrap">Hub &amp; Actions</th>
+                  <th class="px-3.5 py-2.5">Store &amp; Industry</th>
+                  <th class="px-3.5 py-2.5">Owner &amp; Contact</th>
+                  <th class="px-3.5 py-2.5">Plan &amp; Due Date</th>
+                  <th class="px-3.5 py-2.5">Reseller</th>
+                  <th class="px-3 py-2.5 text-center">Status</th>
+                  <th class="px-3.5 py-2.5 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody id="storeTableBody" class="divide-y divide-slate-200">
@@ -622,97 +618,87 @@ foreach ($agents as $a) {
                     data-status="<?= $is_expired ? 'EXPIRED' : 'ACTIVE' ?>" 
                     data-plan="<?= htmlspecialchars($s['plan_type']) ?>">
                   
-                  <!-- Col 1: Store ID & Mode Badge -->
-                  <td class="px-5 py-3.5 whitespace-nowrap">
-                    <div class="space-y-1">
-                      <span class="inline-block px-2.5 py-1 text-center rounded-xl <?= $s['plan_type'] === 'PAID' ? 'bg-emerald-100 text-emerald-900 border border-emerald-300' : 'bg-amber-100 text-amber-900 border border-amber-300' ?> font-black text-xs font-mono shadow-sm">
+                  <!-- Col 1: Store ID, Name, Mode & Location -->
+                  <td class="px-3.5 py-2.5">
+                    <div class="flex items-center gap-2">
+                      <span class="inline-block px-2 py-0.5 rounded-lg <?= $s['plan_type'] === 'PAID' ? 'bg-emerald-100 text-emerald-900 border border-emerald-300' : 'bg-amber-100 text-amber-900 border border-amber-300' ?> font-black text-[11px] font-mono shadow-sm">
                         <?= htmlspecialchars($s['shop_id']) ?>
                       </span>
                       <div>
-                        <?php
-                          if ($btype === 'PHARMACY') {
-                            echo '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 font-extrabold text-[10px] border border-emerald-300"><i class="fa-solid fa-prescription-bottle-medical text-[9px]"></i> Pharmacy</span>';
-                          } elseif ($btype === 'RESTAURANT') {
-                            echo '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-extrabold text-[10px] border border-amber-300"><i class="fa-solid fa-utensils text-[9px]"></i> Dining</span>';
-                          } elseif ($btype === 'FASHION') {
-                            echo '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-pink-100 text-pink-900 font-extrabold text-[10px] border border-pink-300"><i class="fa-solid fa-shirt text-[9px]"></i> Fashion</span>';
-                          } elseif ($btype === 'HARDWARE') {
-                            echo '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-orange-100 text-orange-900 font-extrabold text-[10px] border border-orange-300"><i class="fa-solid fa-screwdriver-wrench text-[9px]"></i> Hardware</span>';
-                          } else {
-                            echo '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-100 text-blue-900 font-extrabold text-[10px] border border-blue-300"><i class="fa-solid fa-cart-shopping text-[9px]"></i> Retail</span>';
-                          }
-                        ?>
+                        <p class="font-extrabold text-slate-900 text-xs leading-tight"><?= htmlspecialchars($s['shop_name']) ?></p>
+                        <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+                          <?php
+                            if ($btype === 'PHARMACY') {
+                              echo '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold text-[9px] border border-emerald-200"><i class="fa-solid fa-prescription-bottle-medical text-[8px]"></i> Pharmacy</span>';
+                            } elseif ($btype === 'RESTAURANT') {
+                              echo '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 font-bold text-[9px] border border-amber-200"><i class="fa-solid fa-utensils text-[8px]"></i> Dining</span>';
+                            } elseif ($btype === 'FASHION') {
+                              echo '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-pink-50 text-pink-800 font-bold text-[9px] border border-pink-200"><i class="fa-solid fa-shirt text-[8px]"></i> Fashion</span>';
+                            } elseif ($btype === 'HARDWARE') {
+                              echo '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-orange-50 text-orange-800 font-bold text-[9px] border border-orange-200"><i class="fa-solid fa-screwdriver-wrench text-[8px]"></i> Hardware</span>';
+                            } else {
+                              echo '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-blue-50 text-blue-800 font-bold text-[9px] border border-blue-200"><i class="fa-solid fa-cart-shopping text-[8px]"></i> Retail</span>';
+                            }
+                          ?>
+                          <span class="text-[10px] text-slate-400"><i class="fa-solid fa-location-dot mr-0.5"></i><?= htmlspecialchars($s['city']) ?></span>
+                        </div>
                       </div>
                     </div>
                   </td>
 
-                  <!-- Col 2: Store Name & City -->
-                  <td class="px-5 py-3.5">
-                    <p class="font-black text-slate-900 text-xs"><?= htmlspecialchars($s['shop_name']) ?></p>
-                    <p class="text-[11px] text-slate-500 font-medium whitespace-nowrap mt-0.5">
-                      <i class="fa-solid fa-location-dot text-slate-400 mr-1"></i><?= htmlspecialchars($s['city']) ?>
-                    </p>
-                  </td>
-
-                  <!-- Col 3: Owner & Contact -->
-                  <td class="px-5 py-3.5 whitespace-nowrap">
-                    <p class="font-bold text-slate-900 text-xs"><?= htmlspecialchars($s['owner_name']) ?></p>
-                    <a href="tel:<?= preg_replace('/[^0-9]/', '', $s['phone']) ?>" class="text-[11px] text-emerald-700 hover:underline font-mono font-bold mt-0.5 inline-flex items-center gap-1">
-                      <i class="fa-solid fa-phone text-[10px]"></i> <?= htmlspecialchars($s['phone']) ?>
+                  <!-- Col 2: Owner & Contact -->
+                  <td class="px-3.5 py-2.5">
+                    <p class="font-bold text-slate-900 text-xs leading-tight"><?= htmlspecialchars($s['owner_name']) ?></p>
+                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', (strpos($s['phone'], '0') === 0 ? '94'.substr($s['phone'], 1) : $s['phone'])) ?>" target="_blank" class="text-[11px] text-emerald-700 hover:underline font-mono font-bold mt-0.5 inline-flex items-center gap-1">
+                      <i class="fa-brands fa-whatsapp text-emerald-600 text-[11px]"></i> <?= htmlspecialchars($s['phone']) ?>
                     </a>
                   </td>
 
+                  <!-- Col 3: Plan, Monthly Fee & Expiry -->
+                  <td class="px-3.5 py-2.5">
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                      <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-black <?= $s['plan_type'] === 'PAID' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50 text-amber-900 border border-amber-200' ?>">
+                        <?= $s['plan_type'] === 'PAID' ? '🔵 Paid' : '🟢 Trial' ?>
+                      </span>
+                      <span class="text-[11px] text-slate-600 font-extrabold">LKR <?= number_format($s['monthly_fee']) ?>/mo</span>
+                    </div>
+                    <div class="mt-0.5 flex items-center gap-1.5">
+                      <span class="text-[11px] font-bold <?= $is_expired ? 'text-red-600' : ($days_left <= 5 ? 'text-amber-600' : 'text-slate-800') ?>">
+                        <?= date('d-M-Y', $exp) ?>
+                      </span>
+                      <?php if ($is_expired): ?>
+                      <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-700 font-black text-[9px]">Expired</span>
+                      <?php elseif ($days_left <= 5): ?>
+                      <span class="px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 font-bold text-[9px]"><?= $days_left ?>d left</span>
+                      <?php else: ?>
+                      <span class="px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-700 font-bold text-[9px] border border-emerald-200"><?= $days_left ?>d left</span>
+                      <?php endif; ?>
+                    </div>
+                  </td>
+
                   <!-- Col 4: Reseller / Agent -->
-                  <td class="px-5 py-3.5 whitespace-nowrap">
+                  <td class="px-3.5 py-2.5">
                     <?php if (!empty($s['referred_by_agent'])): ?>
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 font-bold border border-purple-200">
-                      <i class="fa-solid fa-user-tag text-[10px]"></i> <?= htmlspecialchars($s['referred_by_agent']) ?>
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-purple-50 text-purple-700 font-bold border border-purple-200 text-[10px]">
+                      <i class="fa-solid fa-user-tag text-[9px]"></i> <?= htmlspecialchars($s['referred_by_agent']) ?>
                     </span>
                     <?php else: ?>
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-slate-100 text-slate-500 font-semibold text-[10px]">
-                      <i class="fa-solid fa-user-slash text-[9px]"></i> Direct
+                    <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-semibold text-[10px]">
+                      Direct
                     </span>
                     <?php endif; ?>
                   </td>
 
-                  <!-- Col 5: Plan & Fee -->
-                  <td class="px-5 py-3.5 whitespace-nowrap">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black <?= $s['plan_type'] === 'PAID' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50 text-amber-900 border border-amber-200' ?>">
-                      <?= $s['plan_type'] === 'PAID' ? '🔵 Paid' : '🟢 Trial' ?>
-                    </span>
-                    <p class="text-[11px] text-slate-600 font-extrabold mt-0.5">LKR <?= number_format($s['monthly_fee']) ?>/mo</p>
-                  </td>
-
-                  <!-- Col 6: Due Date & Days Left -->
-                  <td class="px-5 py-3.5 whitespace-nowrap">
-                    <p class="font-extrabold text-xs <?= $is_expired ? 'text-red-600' : ($days_left <= 5 ? 'text-amber-600' : 'text-slate-900') ?>">
-                      <?= date('d-M-Y', $exp) ?>
-                    </p>
-                    <?php if ($is_expired): ?>
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-black text-[10px] mt-0.5">
-                      <i class="fa-solid fa-lock text-[9px]"></i> Expired / Locked
-                    </span>
-                    <?php elseif ($days_left <= 5): ?>
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold text-[10px] mt-0.5">
-                      <i class="fa-solid fa-triangle-exclamation text-[9px]"></i> <?= $days_left ?> days left
-                    </span>
-                    <?php else: ?>
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[10px] mt-0.5 border border-emerald-200">
-                      <i class="fa-solid fa-check text-[9px]"></i> <?= $days_left ?> days left
-                    </span>
-                    <?php endif; ?>
-                  </td>
-
-                  <!-- Col 7: Status Indicator -->
-                  <td class="px-5 py-3.5 whitespace-nowrap">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black <?= $is_expired ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800' ?>">
+                  <!-- Col 5: Status -->
+                  <td class="px-3 py-2.5 text-center">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black <?= $is_expired ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800' ?>">
                       <span class="w-1.5 h-1.5 rounded-full <?= $is_expired ? 'bg-red-500' : 'bg-emerald-500 animate-pulse' ?>"></span>
                       <?= $is_expired ? 'Inactive' : 'Active' ?>
                     </span>
                   </td>
 
-                  <!-- Col 8: Action Buttons & Hub -->
-                  <td class="px-5 py-3.5 text-right space-x-1.5 whitespace-nowrap">
+                  <!-- Col 6: Streamlined Actions -->
+                  <td class="px-3.5 py-2.5 text-right space-x-1">
                     <?php
                       $clean_p = preg_replace('/[^0-9]/', '', $s['phone']);
                       if (strpos($clean_p, '0') === 0) $clean_p = '94' . substr($clean_p, 1);
@@ -739,28 +725,28 @@ foreach ($agents as $a) {
                     ?>
                     
                     <!-- WhatsApp APK Voucher -->
-                    <a href="https://wa.me/<?= $clean_p ?>?text=<?= $quick_msg ?>" target="_blank" title="Send APK & License Voucher via WhatsApp" class="px-2.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs shadow-sm transition inline-flex items-center gap-1">
-                      <i class="fa-brands fa-whatsapp text-sm"></i> Send APK
+                    <a href="https://wa.me/<?= $clean_p ?>?text=<?= $quick_msg ?>" target="_blank" title="Send APK & Voucher via WhatsApp" class="px-2 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-[11px] shadow-sm transition inline-flex items-center gap-1">
+                      <i class="fa-brands fa-whatsapp text-xs"></i> Send APK
                     </a>
 
                     <!-- Manage Hub Modal -->
                     <button type="button" onclick='openStoreHub(<?= json_encode($s, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>, <?= json_encode($s_features) ?>)' 
-                            class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs inline-flex items-center gap-1.5 shadow-sm transition">
-                      <i class="fa-solid fa-sliders text-emerald-400"></i> Manage Hub
+                            class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-[11px] inline-flex items-center gap-1 shadow-sm transition">
+                      <i class="fa-solid fa-sliders text-emerald-400 text-[10px]"></i> Hub
                     </button>
 
                     <!-- Quick +30 Days Extend -->
-                    <a href="index.php?extend_id=<?= $s['shop_id'] ?>&days=30" title="Extend by 30 Days" class="px-2.5 py-1.5 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 font-bold text-xs shadow-sm transition inline-block">
+                    <a href="index.php?extend_id=<?= $s['shop_id'] ?>&days=30" title="Extend by 30 Days" class="px-2 py-1 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 font-bold text-[11px] shadow-sm transition inline-block">
                       +30D
                     </a>
 
                     <!-- Kill Switch Toggle -->
-                    <a href="index.php?toggle_id=<?= $s['shop_id'] ?>" title="Toggle Remote Active / Kill Switch" class="p-1.5 text-slate-400 hover:text-emerald-700 inline-block align-middle">
-                      <i class="fa-solid <?= $s['is_active'] ? 'fa-toggle-on text-emerald-600 text-xl' : 'fa-toggle-off text-slate-400 text-xl' ?>"></i>
+                    <a href="index.php?toggle_id=<?= $s['shop_id'] ?>" title="Toggle Remote Active / Kill Switch" class="p-1 text-slate-400 hover:text-emerald-700 inline-block align-middle">
+                      <i class="fa-solid <?= $s['is_active'] ? 'fa-toggle-on text-emerald-600 text-lg' : 'fa-toggle-off text-slate-400 text-lg' ?>"></i>
                     </a>
 
                     <!-- Delete Store -->
-                    <a href="index.php?delete_id=<?= $s['shop_id'] ?>" onclick="return confirm('Permanently delete store license for <?= htmlspecialchars($s['shop_name']) ?> (<?= $s['shop_id'] ?>)?');" title="Delete Store" class="p-1.5 text-slate-400 hover:text-red-600 text-sm inline-block align-middle">
+                    <a href="index.php?delete_id=<?= $s['shop_id'] ?>" onclick="return confirm('Permanently delete store license for <?= htmlspecialchars($s['shop_name']) ?> (<?= $s['shop_id'] ?>)?');" title="Delete Store" class="p-1 text-slate-400 hover:text-red-600 text-xs inline-block align-middle">
                       <i class="fa-solid fa-trash"></i>
                     </a>
                   </td>
@@ -771,10 +757,9 @@ foreach ($agents as $a) {
             </table>
 
             <!-- Empty Search State -->
-            <div id="noStoreMatch" class="hidden p-12 text-center text-slate-400 space-y-2">
-              <i class="fa-solid fa-store-slash text-3xl text-slate-300"></i>
-              <p class="text-sm font-bold text-slate-600">No stores found matching your search filter</p>
-              <p class="text-xs">Try clearing the search box or changing the industry filter.</p>
+            <div id="noStoreMatch" class="hidden p-8 text-center text-slate-400 space-y-1">
+              <i class="fa-solid fa-store-slash text-2xl text-slate-300"></i>
+              <p class="text-xs font-bold text-slate-600">No stores found matching your search filter</p>
             </div>
 
           </div>
@@ -785,84 +770,84 @@ foreach ($agents as $a) {
       <!-- ======================================================== -->
       <!-- 🧑‍💼 TAB 3: SALES AGENTS & REFERRAL TEAM -->
       <!-- ======================================================== -->
-      <section id="tab-agents" class="tab-content space-y-4">
-        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="p-5 border-b border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <section id="tab-agents" class="tab-content space-y-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="p-4 border-b border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
             <div>
               <h3 class="text-sm font-extrabold text-slate-900">Island-wide Sales Agents &amp; Franchise Network</h3>
-              <p class="text-xs text-slate-500">Track stores onboarded by agents, recurring commissions, and payouts</p>
+              <p class="text-[11px] text-slate-500">Track stores onboarded by agents, recurring commissions, and payouts</p>
             </div>
-            <button onclick="openAddAgentModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
-              <i class="fa-solid fa-user-plus"></i> + Onboard New Agent
+            <button onclick="openAddAgentModal()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+              <i class="fa-solid fa-user-plus"></i> + Onboard Agent
             </button>
           </div>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold border-b border-slate-200">
+          <div class="w-full">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 text-slate-700 uppercase font-extrabold border-b border-slate-200 text-[11px]">
                 <tr>
-                  <th class="px-6 py-4">Agent Code &amp; Name</th>
-                  <th class="px-6 py-4">Phone &amp; Region</th>
-                  <th class="px-6 py-4">Commission Rate</th>
-                  <th class="px-6 py-4">Stores Onboarded</th>
-                  <th class="px-6 py-4">Total Earned</th>
-                  <th class="px-6 py-4">Unpaid Balance</th>
-                  <th class="px-6 py-4 text-right">Actions</th>
+                  <th class="px-3.5 py-2.5">Agent &amp; Bank Details</th>
+                  <th class="px-3.5 py-2.5">Contact &amp; City</th>
+                  <th class="px-3.5 py-2.5">Rate</th>
+                  <th class="px-3.5 py-2.5">Stores</th>
+                  <th class="px-3.5 py-2.5">Total Earned</th>
+                  <th class="px-3.5 py-2.5">Unpaid Balance</th>
+                  <th class="px-3.5 py-2.5 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <?php foreach ($agents as $ag): ?>
                 <tr class="hover:bg-slate-50/80 transition">
-                  <td class="px-6 py-4">
-                    <div class="flex items-center gap-3">
-                      <div class="px-2.5 py-1.5 min-w-[76px] text-center rounded-xl bg-purple-100 text-purple-900 border border-purple-300 font-extrabold text-xs font-mono whitespace-nowrap shadow-sm">
+                  <td class="px-3.5 py-2.5">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-0.5 rounded-lg bg-purple-100 text-purple-900 border border-purple-300 font-extrabold text-[11px] font-mono shadow-sm">
                         <?= htmlspecialchars($ag['agent_code']) ?>
-                      </div>
+                      </span>
                       <div>
-                        <p class="font-extrabold text-slate-900 text-xs"><?= htmlspecialchars($ag['name']) ?></p>
-                        <p class="text-[11px] text-slate-400 font-mono whitespace-nowrap mt-0.5"><?= htmlspecialchars($ag['bank_details'] ?: 'No Bank Added') ?></p>
+                        <p class="font-extrabold text-slate-900 text-xs leading-tight"><?= htmlspecialchars($ag['name']) ?></p>
+                        <p class="text-[10px] text-slate-400 font-mono truncate max-w-[200px]"><?= htmlspecialchars($ag['bank_details'] ?: 'No Bank Added') ?></p>
                       </div>
                     </div>
                   </td>
 
-                  <td class="px-6 py-4">
-                    <p class="font-bold text-slate-900 text-xs font-mono whitespace-nowrap"><?= htmlspecialchars($ag['phone']) ?></p>
-                    <p class="text-[11px] text-slate-500 whitespace-nowrap mt-0.5"><i class="fa-solid fa-location-dot text-slate-400 mr-1"></i><?= htmlspecialchars($ag['city']) ?></p>
+                  <td class="px-3.5 py-2.5">
+                    <p class="font-bold text-slate-900 text-xs font-mono"><?= htmlspecialchars($ag['phone']) ?></p>
+                    <p class="text-[10px] text-slate-500"><i class="fa-solid fa-location-dot mr-0.5 text-slate-400"></i><?= htmlspecialchars($ag['city']) ?></p>
                   </td>
 
-                  <td class="px-6 py-4">
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 font-extrabold border border-emerald-200 whitespace-nowrap">
-                      <?= number_format($ag['commission_percent']) ?>% Monthly
+                  <td class="px-3.5 py-2.5">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 font-extrabold border border-emerald-200 text-[10px]">
+                      <?= number_format($ag['commission_percent']) ?>% Mo
                     </span>
                   </td>
 
-                  <td class="px-6 py-4">
-                    <p class="font-extrabold text-slate-900 text-sm whitespace-nowrap"><?= $ag['total_referred_shops'] ?> Stores</p>
+                  <td class="px-3.5 py-2.5">
+                    <p class="font-extrabold text-slate-900 text-xs"><?= $ag['total_referred_shops'] ?> Stores</p>
                   </td>
 
-                  <td class="px-6 py-4">
-                    <p class="font-extrabold text-emerald-700 text-sm whitespace-nowrap">LKR <?= number_format($ag['total_earned']) ?></p>
+                  <td class="px-3.5 py-2.5">
+                    <p class="font-extrabold text-emerald-700 text-xs">LKR <?= number_format($ag['total_earned']) ?></p>
                   </td>
 
-                  <td class="px-6 py-4">
+                  <td class="px-3.5 py-2.5">
                     <?php if ($ag['balance_payable'] > 0): ?>
-                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-950 font-black text-xs whitespace-nowrap border border-amber-300">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 text-amber-950 font-black text-[10px] border border-amber-300">
                       LKR <?= number_format($ag['balance_payable']) ?> Due
                     </span>
                     <?php else: ?>
-                    <span class="text-slate-400 font-semibold whitespace-nowrap">Settled</span>
+                    <span class="text-slate-400 font-semibold text-[11px]">Settled</span>
                     <?php endif; ?>
                   </td>
 
-                  <td class="px-6 py-4 text-right space-x-2 whitespace-nowrap">
+                  <td class="px-3.5 py-2.5 text-right space-x-1.5">
                     <?php if ($ag['balance_payable'] > 0): ?>
                     <a href="index.php?pay_agent_id=<?= $ag['agent_code'] ?>" onclick="return confirm('Mark LKR <?= number_format($ag['balance_payable']) ?> as Paid to <?= $ag['name'] ?>?');" 
-                       class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow transition">
-                      ✓ Mark Paid
+                       class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[11px] shadow transition">
+                      ✓ Paid
                     </a>
                     <?php endif; ?>
-                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $ag['phone']) ?>" target="_blank" class="inline-flex items-center justify-center p-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs shadow transition">
-                      <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $ag['phone']) ?>" target="_blank" class="inline-flex items-center justify-center p-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-[11px] shadow transition">
+                      <i class="fa-brands fa-whatsapp text-xs"></i>
                     </a>
                   </td>
                 </tr>
@@ -876,40 +861,40 @@ foreach ($agents as $a) {
       <!-- ======================================================== -->
       <!-- 💰 TAB 4: COMMISSION LEDGER -->
       <!-- ======================================================== -->
-      <section id="tab-commissions" class="tab-content space-y-4">
-        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="p-5 border-b border-slate-200">
+      <section id="tab-commissions" class="tab-content space-y-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="p-4 border-b border-slate-200">
             <h3 class="text-sm font-extrabold text-slate-900">Commission History &amp; Transaction Ledger</h3>
-            <p class="text-xs text-slate-500">Automated recurring profit share generated when stores renew subscriptions</p>
+            <p class="text-[11px] text-slate-500">Automated recurring profit share generated when stores renew subscriptions</p>
           </div>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold border-b border-slate-200">
+          <div class="w-full">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 text-slate-700 uppercase font-extrabold border-b border-slate-200 text-[11px]">
                 <tr>
-                  <th class="px-6 py-4">Agent Code</th>
-                  <th class="px-6 py-4">Store ID &amp; Name</th>
-                  <th class="px-6 py-4">Commission Amount</th>
-                  <th class="px-6 py-4">Description</th>
-                  <th class="px-6 py-4">Date &amp; Time</th>
-                  <th class="px-6 py-4">Status</th>
+                  <th class="px-3.5 py-2.5">Agent</th>
+                  <th class="px-3.5 py-2.5">Store ID &amp; Name</th>
+                  <th class="px-3.5 py-2.5">Commission</th>
+                  <th class="px-3.5 py-2.5">Description</th>
+                  <th class="px-3.5 py-2.5">Date</th>
+                  <th class="px-3.5 py-2.5">Status</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <?php foreach ($commissions as $c): ?>
                 <tr class="hover:bg-slate-50/80 transition">
-                  <td class="px-6 py-4 font-mono font-bold text-purple-800 whitespace-nowrap">
-                    <span class="px-2 py-1 rounded-lg bg-purple-50 border border-purple-200"><?= htmlspecialchars($c['agent_code']) ?></span>
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-purple-800">
+                    <span class="px-2 py-0.5 rounded bg-purple-50 border border-purple-200 text-[11px]"><?= htmlspecialchars($c['agent_code']) ?></span>
                   </td>
-                  <td class="px-6 py-4">
-                    <p class="font-bold text-slate-900"><?= htmlspecialchars($c['shop_name']) ?></p>
-                    <p class="text-[11px] text-slate-400 font-mono"><?= htmlspecialchars($c['shop_id']) ?></p>
+                  <td class="px-3.5 py-2.5">
+                    <p class="font-bold text-slate-900 text-xs"><?= htmlspecialchars($c['shop_name']) ?></p>
+                    <p class="text-[10px] text-slate-400 font-mono"><?= htmlspecialchars($c['shop_id']) ?></p>
                   </td>
-                  <td class="px-6 py-4 font-extrabold text-emerald-700 text-sm whitespace-nowrap">LKR <?= number_format($c['amount']) ?></td>
-                  <td class="px-6 py-4 text-slate-600"><?= htmlspecialchars($c['description']) ?></td>
-                  <td class="px-6 py-4 text-slate-500 whitespace-nowrap"><?= date('d-M-Y H:i', strtotime($c['created_at'])) ?></td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold <?= $c['status'] === 'PAID' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-900' ?>">
+                  <td class="px-3.5 py-2.5 font-extrabold text-emerald-700 text-xs">LKR <?= number_format($c['amount']) ?></td>
+                  <td class="px-3.5 py-2.5 text-slate-600 text-[11px]"><?= htmlspecialchars($c['description']) ?></td>
+                  <td class="px-3.5 py-2.5 text-slate-500 text-[11px]"><?= date('d-M-Y H:i', strtotime($c['created_at'])) ?></td>
+                  <td class="px-3.5 py-2.5">
+                    <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold <?= $c['status'] === 'PAID' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-900' ?>">
                       <?= $c['status'] ?>
                     </span>
                   </td>
@@ -924,43 +909,43 @@ foreach ($agents as $a) {
       <!-- ======================================================== -->
       <!-- 📩 TAB 5: WEBSITE LEADS -->
       <!-- ======================================================== -->
-      <section id="tab-leads" class="tab-content space-y-4">
-        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="p-5 border-b border-slate-200">
+      <section id="tab-leads" class="tab-content space-y-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="p-4 border-b border-slate-200">
             <h3 class="text-sm font-extrabold text-slate-900">Website Free Trial Requests &amp; Inquiries</h3>
-            <p class="text-xs text-slate-500">Direct leads submitted by store owners on your public website</p>
+            <p class="text-[11px] text-slate-500">Direct leads submitted by store owners on your public website</p>
           </div>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold border-b border-slate-200">
+          <div class="w-full">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 text-slate-700 uppercase font-extrabold border-b border-slate-200 text-[11px]">
                 <tr>
-                  <th class="px-6 py-4">Store Name</th>
-                  <th class="px-6 py-4">Owner &amp; Phone</th>
-                  <th class="px-6 py-4">Category &amp; City</th>
-                  <th class="px-6 py-4">Referred By</th>
-                  <th class="px-6 py-4">Date</th>
-                  <th class="px-6 py-4 text-right">Action</th>
+                  <th class="px-3.5 py-2.5">Store Name</th>
+                  <th class="px-3.5 py-2.5">Owner &amp; Phone</th>
+                  <th class="px-3.5 py-2.5">Mode &amp; City</th>
+                  <th class="px-3.5 py-2.5">Referred By</th>
+                  <th class="px-3.5 py-2.5">Date</th>
+                  <th class="px-3.5 py-2.5 text-right">Action</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <?php foreach ($leads as $l): ?>
                 <tr class="hover:bg-slate-50/80 transition">
-                  <td class="px-6 py-4 font-bold text-slate-900 text-xs"><?= htmlspecialchars($l['shop_name']) ?></td>
-                  <td class="px-6 py-4">
-                    <p class="font-bold text-slate-900 text-xs whitespace-nowrap"><?= htmlspecialchars($l['owner_name']) ?></p>
-                    <p class="text-[11px] text-slate-500 font-mono whitespace-nowrap"><?= htmlspecialchars($l['phone']) ?></p>
+                  <td class="px-3.5 py-2.5 font-bold text-slate-900 text-xs"><?= htmlspecialchars($l['shop_name']) ?></td>
+                  <td class="px-3.5 py-2.5">
+                    <p class="font-bold text-slate-900 text-xs"><?= htmlspecialchars($l['owner_name']) ?></p>
+                    <p class="text-[11px] text-slate-500 font-mono"><?= htmlspecialchars($l['phone']) ?></p>
                   </td>
-                  <td class="px-6 py-4">
+                  <td class="px-3.5 py-2.5">
                     <p class="font-semibold text-xs"><?= htmlspecialchars($l['business_type']) ?></p>
-                    <p class="text-[11px] text-slate-400"><?= htmlspecialchars($l['city']) ?></p>
+                    <p class="text-[10px] text-slate-400"><?= htmlspecialchars($l['city']) ?></p>
                   </td>
-                  <td class="px-6 py-4 font-mono font-bold text-purple-700 whitespace-nowrap">
+                  <td class="px-3.5 py-2.5 font-mono font-bold text-purple-700 text-xs">
                     <?= htmlspecialchars($l['referred_by_agent'] ?: 'Direct') ?>
                   </td>
-                  <td class="px-6 py-4 text-slate-500 whitespace-nowrap"><?= date('d-M-Y', strtotime($l['created_at'])) ?></td>
-                  <td class="px-6 py-4 text-right whitespace-nowrap">
-                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $l['phone']) ?>" target="_blank" class="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl inline-flex items-center gap-1.5 shadow-sm transition">
+                  <td class="px-3.5 py-2.5 text-slate-500 text-[11px]"><?= date('d-M-Y', strtotime($l['created_at'])) ?></td>
+                  <td class="px-3.5 py-2.5 text-right">
+                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $l['phone']) ?>" target="_blank" class="px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-lg inline-flex items-center gap-1 shadow-sm transition text-xs">
                       <i class="fa-brands fa-whatsapp"></i> Chat Lead
                     </a>
                   </td>
