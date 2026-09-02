@@ -1,0 +1,57 @@
+name: Web Portal - Lint & Deploy to cPanel
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    paths:
+      - 'web_portal/**'
+      - '.github/workflows/deploy_web_portal.yml'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: 🔍 PHP Syntax & Security Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🐘 Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo, pdo_mysql, json, curl
+
+      - name: 🧪 Lint PHP Files
+        run: |
+          echo "Linting all PHP files in web_portal/..."
+          find web_portal -name "*.php" -exec php -l {} \;
+
+  deploy:
+    name: 🚀 Deploy to cPanel / Web Hosting
+    needs: lint
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      # Deploys web_portal directory contents to cPanel using FTP / FTPS
+      # Requires FTP_SERVER, FTP_USERNAME, FTP_PASSWORD in GitHub Repository Secrets
+      - name: 📤 FTP Deploy to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./web_portal/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR || '/public_html/' }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/schema.sql

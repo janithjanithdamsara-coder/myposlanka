@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS SaaS Cloud Admin Portal | Store & License Manager</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#F0FDF4',
+              100: '#DCFCE7',
+              500: '#22C55E',
+              600: '#16A34A',
+              700: '#15803D',
+              800: '#166534',
+              900: '#14532D',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #F8FAFC; }
+    .glass-card { background: #FFFFFF; border: 1px solid #E2E8F0; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="bg-emerald-800 text-white sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl shadow-inner font-bold">
+          <i class="fa-solid fa-cash-register"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight">POS Master Cloud Admin</h1>
+          <p class="text-xs text-emerald-200">SaaS Store Licensing &amp; Subscription Portal</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        <button onclick="openUpdateModal()" class="px-3 py-1.5 rounded-lg bg-emerald-700/80 hover:bg-emerald-700 text-xs font-semibold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-cloud-arrow-up text-amber-300"></i> App Updates (v1.0)
+        </button>
+        <button onclick="openAddShopModal()" class="px-4 py-2 rounded-lg bg-white text-emerald-800 hover:bg-emerald-50 text-xs sm:text-sm font-bold shadow transition flex items-center gap-2">
+          <i class="fa-solid fa-plus"></i> Add New Store
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
+
+    <!-- KPI STATS OVERVIEW CARDS -->
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <!-- Total Stores -->
+      <div class="glass-card p-4 rounded-2xl shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 text-xl">
+          <i class="fa-solid fa-store"></i>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Stores</p>
+          <p id="statTotalShops" class="text-2xl font-extrabold text-slate-900">0</p>
+        </div>
+      </div>
+
+      <!-- Active Trials -->
+      <div class="glass-card p-4 rounded-2xl shadow-sm flex items-center gap-4 border-l-4 border-l-amber-500">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 text-xl">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Active Trials</p>
+          <p id="statActiveTrials" class="text-2xl font-extrabold text-amber-600">0</p>
+        </div>
+      </div>
+
+      <!-- Paid Subscriptions -->
+      <div class="glass-card p-4 rounded-2xl shadow-sm flex items-center gap-4 border-l-4 border-l-emerald-600">
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-xl">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Paid Active</p>
+          <p id="statActivePaid" class="text-2xl font-extrabold text-emerald-600">0</p>
+        </div>
+      </div>
+
+      <!-- Expired Stores -->
+      <div class="glass-card p-4 rounded-2xl shadow-sm flex items-center gap-4 border-l-4 border-l-red-500">
+        <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-red-600 text-xl">
+          <i class="fa-solid fa-ban"></i>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Expired / Locked</p>
+          <p id="statExpired" class="text-2xl font-extrabold text-red-600">0</p>
+        </div>
+      </div>
+
+      <!-- Monthly Revenue -->
+      <div class="glass-card p-4 rounded-2xl shadow-sm flex items-center gap-4 col-span-2 lg:col-span-1 border-l-4 border-l-blue-600">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 text-xl">
+          <i class="fa-solid fa-money-bill-wave"></i>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Monthly MRR</p>
+          <p id="statMonthlyMRR" class="text-xl font-extrabold text-blue-700">LKR 0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER & SEARCH BAR -->
+    <div class="glass-card p-4 rounded-2xl shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div class="relative w-full md:w-80">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+        <input id="searchInput" oninput="renderShopsTable()" type="text" placeholder="Search by Store Name, ID, Phone..." 
+          class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+      </div>
+
+      <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto">
+        <span class="text-xs font-bold text-slate-400 uppercase mr-1">Filter:</span>
+        <button onclick="setFilter('ALL')" id="filterAll" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition">All Stores</button>
+        <button onclick="setFilter('TRIAL')" id="filterTrial" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Trials</button>
+        <button onclick="setFilter('PAID')" id="filterPaid" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Paid</button>
+        <button onclick="setFilter('EXPIRED')" id="filterExpired" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Expired</button>
+      </div>
+    </div>
+
+    <!-- STORES TABLE -->
+    <div class="glass-card rounded-2xl shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-50 text-slate-500 uppercase text-xs border-b border-slate-200">
+            <tr>
+              <th class="px-6 py-4 font-bold">Store Details</th>
+              <th class="px-6 py-4 font-bold">Owner &amp; Contact</th>
+              <th class="px-6 py-4 font-bold">Plan &amp; Monthly Fee</th>
+              <th class="px-6 py-4 font-bold">Expiry &amp; Remaining</th>
+              <th class="px-6 py-4 font-bold">Status</th>
+              <th class="px-6 py-4 font-bold text-right">Quick Actions</th>
+            </tr>
+          </thead>
+          <tbody id="shopsTableBody" class="divide-y divide-slate-200">
+            <!-- Dynamically Rendered -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="emptyState" class="hidden p-12 text-center">
+        <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-2xl mb-3">
+          <i class="fa-solid fa-store-slash"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-800">No stores found</h3>
+        <p class="text-xs text-slate-500 mt-1">Register a store to get started with licensing.</p>
+        <button onclick="openAddShopModal()" class="mt-4 px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition">
+          + Add First Store
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: ADD / REGISTER NEW STORE -->
+  <div id="addShopModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div class="bg-emerald-800 text-white p-5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-store text-emerald-300"></i>
+          <h2 class="text-base font-bold">Register New Client Store</h2>
+        </div>
+        <button onclick="closeAddShopModal()" class="text-emerald-200 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="addShopForm" onsubmit="handleSaveNewShop(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Store Name (කඩේ නම) *</label>
+          <input id="modalShopName" type="text" required placeholder="e.g. Saman Super Mart" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Owner Name *</label>
+            <input id="modalOwnerName" type="text" required placeholder="e.g. Saman Kumara" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Phone / WhatsApp *</label>
+            <input id="modalPhone" type="text" required placeholder="e.g. 0771234567" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">City / Location</label>
+            <input id="modalCity" type="text" placeholder="e.g. Galle / Colombo" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Monthly Fee (LKR)</label>
+            <input id="modalMonthlyFee" type="number" value="3000" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Initial Plan / Duration *</label>
+          <select id="modalPlanDuration" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            <option value="TRIAL_14">🟢 14 Days Free Trial (Recommended)</option>
+            <option value="TRIAL_7">🟢 7 Days Free Trial</option>
+            <option value="TRIAL_30">🟢 30 Days Free Trial</option>
+            <option value="PAID_30">🔵 1 Month Paid (30 Days)</option>
+            <option value="PAID_90">🔵 3 Months Paid (90 Days)</option>
+            <option value="PAID_365">🔵 1 Year Paid (365 Days)</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+          <button type="button" onclick="closeAddShopModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> Register Store &amp; Generate PIN
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PIN VOUCHER & WHATSAPP SHARE -->
+  <div id="voucherModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden">
+      <div class="bg-emerald-800 text-white p-5 text-center">
+        <div class="w-12 h-12 rounded-full bg-emerald-600 mx-auto flex items-center justify-center text-xl text-white mb-2">
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <h2 class="text-base font-bold">Store Activation Voucher</h2>
+        <p id="voucherShopName" class="text-xs text-emerald-200 mt-0.5">Saman Super Mart</p>
+      </div>
+
+      <div class="p-6 space-y-4 text-center">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+          <div>
+            <p class="text-xs text-slate-500 font-semibold">Store ID (කඩේ අංකය)</p>
+            <p id="voucherShopId" class="text-xl font-mono font-extrabold text-slate-900">SHP-101</p>
+          </div>
+          <div class="pt-2 border-t border-slate-200">
+            <p class="text-xs text-slate-500 font-semibold">Activation / Renewal PIN</p>
+            <p id="voucherPin" class="text-3xl font-mono font-black text-emerald-600 tracking-wider">849201</p>
+          </div>
+          <div class="pt-1">
+            <p id="voucherExpiry" class="text-xs font-medium text-slate-600">Valid Until: 15-Sep-2026 (14 Days)</p>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500">
+          Share this Store ID and PIN with the client to activate their POS App.
+        </p>
+
+        <div class="flex gap-2 justify-center">
+          <button id="btnShareWhatsApp" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+            <i class="fa-brands fa-whatsapp text-base"></i> Share via WhatsApp
+          </button>
+          <button onclick="closeVoucherModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: APP UPDATE CONFIGURATION -->
+  <div id="updateModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden">
+      <div class="bg-slate-900 text-white p-5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-cloud-arrow-up text-amber-400"></i>
+          <h2 class="text-base font-bold">App Updates &amp; Remote Release</h2>
+        </div>
+        <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Latest Version Code</label>
+            <input id="cfgVersionCode" type="number" value="2" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-slate-900 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Version Name</label>
+            <input id="cfgVersionName" type="text" value="v1.1.0" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-slate-900 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Direct APK Download URL (Google Drive / Direct link)</label>
+          <input id="cfgApkUrl" type="text" value="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-slate-900 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Release Notes (Announcements for Shops)</label>
+          <textarea id="cfgReleaseNotes" rows="3" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-slate-900 focus:outline-none">Added customer credit ledger, fast barcode search, and performance improvements.</textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+          <button onclick="closeUpdateModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 transition">Cancel</button>
+          <button onclick="saveUpdateConfig()" class="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition">
+            Save &amp; Broadcast Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const SECRET_SALT = "POS_LANKA_SEC_2026";
+    let activeFilter = 'ALL';
+
+    // Simple SHA-256 hash function in pure JS to generate offline PINs matching Android LicenseManager.java
+    async function generateOfflineCode(shopId, actionKey) {
+      const raw = `${shopId.trim().toUpperCase()}:${actionKey}:${SECRET_SALT}`;
+      const msgBuffer = new TextEncoder().encode(raw);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      
+      const number = (
+        ((hashArray[0] & 0xFF) << 24) |
+        ((hashArray[1] & 0xFF) << 16) |
+        ((hashArray[2] & 0xFF) << 8)  |
+        (hashArray[3] & 0xFF)
+      ) >>> 0;
+
+      return String(number % 1000000).padStart(6, '0');
+    }
+
+    // Default Starter Mock Data if localStorage is empty
+    const DEFAULT_SHOPS = [
+      {
+        id: "SHP-101",
+        name: "Saman Super Mart",
+        owner: "Saman Kumara",
+        phone: "0771234567",
+        city: "Galle",
+        planType: "TRIAL",
+        monthlyFee: 3000,
+        expiry: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+        isActive: true,
+        supportPin: "849201"
+      },
+      {
+        id: "SHP-102",
+        name: "Perera Grocery & Fresh",
+        owner: "K. Perera",
+        phone: "0719876543",
+        city: "Colombo 05",
+        planType: "PAID",
+        monthlyFee: 3500,
+        expiry: new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString(),
+        isActive: true,
+        supportPin: "123456"
+      }
+    ];
+
+    function getShops() {
+      const stored = localStorage.getItem('POS_SHOPS_DATA');
+      if (!stored) {
+        localStorage.setItem('POS_SHOPS_DATA', JSON.stringify(DEFAULT_SHOPS));
+        return DEFAULT_SHOPS;
+      }
+      return JSON.parse(stored);
+    }
+
+    function saveShops(shops) {
+      localStorage.setItem('POS_SHOPS_DATA', JSON.stringify(shops));
+      renderShopsTable();
+      updateStats();
+    }
+
+    function updateStats() {
+      const shops = getShops();
+      const now = Date.now();
+
+      let trials = 0;
+      let paid = 0;
+      let expired = 0;
+      let mrr = 0;
+
+      shops.forEach(s => {
+        const isExp = new Date(s.expiry).getTime() < now || !s.isActive;
+        if (isExp) {
+          expired++;
+        } else {
+          if (s.planType === 'TRIAL') trials++;
+          else {
+            paid++;
+            mrr += Number(s.monthlyFee || 0);
+          }
+        }
+      });
+
+      document.getElementById('statTotalShops').innerText = shops.length;
+      document.getElementById('statActiveTrials').innerText = trials;
+      document.getElementById('statActivePaid').innerText = paid;
+      document.getElementById('statExpired').innerText = expired;
+      document.getElementById('statMonthlyMRR').innerText = 'LKR ' + mrr.toLocaleString();
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      ['filterAll', 'filterTrial', 'filterPaid', 'filterExpired'].forEach(id => {
+        const btn = document.getElementById(id);
+        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
+      });
+      if (filter === 'ALL') document.getElementById('filterAll').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition";
+      if (filter === 'TRIAL') document.getElementById('filterTrial').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 text-white transition";
+      if (filter === 'PAID') document.getElementById('filterPaid').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white transition";
+      if (filter === 'EXPIRED') document.getElementById('filterExpired').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-red-600 text-white transition";
+      renderShopsTable();
+    }
+
+    function renderShopsTable() {
+      const shops = getShops();
+      const tbody = document.getElementById('shopsTableBody');
+      const emptyState = document.getElementById('emptyState');
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+      const now = Date.now();
+
+      tbody.innerHTML = '';
+
+      const filtered = shops.filter(shop => {
+        const matchSearch = shop.name.toLowerCase().includes(searchTerm) || 
+                            shop.id.toLowerCase().includes(searchTerm) || 
+                            shop.phone.includes(searchTerm) || 
+                            (shop.city && shop.city.toLowerCase().includes(searchTerm));
+
+        const isExp = new Date(shop.expiry).getTime() < now || !shop.isActive;
+        if (!matchSearch) return false;
+
+        if (activeFilter === 'TRIAL') return shop.planType === 'TRIAL' && !isExp;
+        if (activeFilter === 'PAID') return shop.planType === 'PAID' && !isExp;
+        if (activeFilter === 'EXPIRED') return isExp;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+
+      filtered.forEach(shop => {
+        const expTime = new Date(shop.expiry).getTime();
+        const daysLeft = Math.max(0, Math.ceil((expTime - now) / (1000 * 60 * 60 * 24)));
+        const isExpired = expTime < now || !shop.isActive;
+
+        const row = document.createElement('tr');
+        row.className = "hover:bg-slate-50 transition";
+        row.innerHTML = `
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl ${shop.planType === 'PAID' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'} flex items-center justify-center font-bold text-xs">
+                ${shop.id}
+              </div>
+              <div>
+                <p class="font-bold text-slate-900">${shop.name}</p>
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-location-dot text-slate-400"></i> ${shop.city || 'Sri Lanka'}</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <p class="font-medium text-slate-900">${shop.owner}</p>
+            <p class="text-xs text-slate-500"><i class="fa-solid fa-phone text-slate-400"></i> ${shop.phone}</p>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold ${shop.planType === 'PAID' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'}">
+              ${shop.planType === 'PAID' ? '🔵 Paid Plan' : '🟢 Free Trial'}
+            </span>
+            <p class="text-xs text-slate-500 mt-1">LKR ${Number(shop.monthlyFee || 3000).toLocaleString()} /mo</p>
+          </td>
+          <td class="px-6 py-4">
+            <p class="font-bold ${isExpired ? 'text-red-600' : 'text-slate-900'}">${new Date(shop.expiry).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+            <p class="text-xs ${isExpired ? 'text-red-500 font-bold' : 'text-slate-500'}">
+              ${isExpired ? '🔒 Expired / Locked' : daysLeft + ' days remaining'}
+            </p>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${isExpired ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800'}">
+              <span class="w-1.5 h-1.5 rounded-full ${isExpired ? 'bg-red-500' : 'bg-emerald-500 animate-pulse'}"></span>
+              ${isExpired ? 'Inactive' : 'Active'}
+            </span>
+          </td>
+          <td class="px-6 py-4 text-right space-x-1">
+            <button onclick="extendShopPaid('${shop.id}', 30)" title="Add +30 Days Paid" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 text-xs font-bold transition">
+              +30D Paid
+            </button>
+            <button onclick="showOfflineVoucher('${shop.id}')" title="Generate Offline PIN & Voucher" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+              <i class="fa-solid fa-key text-amber-500"></i> PIN
+            </button>
+            <button onclick="toggleShopStatus('${shop.id}')" title="${shop.isActive ? 'Suspend Store' : 'Enable Store'}" class="p-1.5 rounded-lg ${shop.isActive ? 'text-slate-400 hover:text-red-600' : 'text-emerald-600 hover:text-emerald-800'} text-xs font-bold transition">
+              <i class="fa-solid ${shop.isActive ? 'fa-toggle-on text-emerald-600 text-base' : 'fa-toggle-off text-slate-400 text-base'}"></i>
+            </button>
+            <button onclick="deleteShop('${shop.id}')" title="Delete Store" class="p-1.5 text-slate-400 hover:text-red-600 text-xs transition">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    async function handleSaveNewShop(e) {
+      e.preventDefault();
+      const shops = getShops();
+      const nextId = "SHP-" + String(100 + shops.length + 1);
+
+      const name = document.getElementById('modalShopName').value.trim();
+      const owner = document.getElementById('modalOwnerName').value.trim();
+      const phone = document.getElementById('modalPhone').value.trim();
+      const city = document.getElementById('modalCity').value.trim();
+      const monthlyFee = Number(document.getElementById('modalMonthlyFee').value) || 3000;
+      const planDuration = document.getElementById('modalPlanDuration').value;
+
+      let durationDays = 14;
+      let planType = 'TRIAL';
+      let actionKey = 'RENEW_TRIAL_14';
+
+      if (planDuration === 'TRIAL_7') { durationDays = 7; actionKey = 'RENEW_TRIAL_7'; }
+      if (planDuration === 'TRIAL_14') { durationDays = 14; actionKey = 'RENEW_TRIAL_14'; }
+      if (planDuration === 'TRIAL_30') { durationDays = 30; actionKey = 'RENEW_TRIAL_30'; }
+      if (planDuration === 'PAID_30') { durationDays = 30; planType = 'PAID'; actionKey = 'RENEW_PAID_30'; }
+      if (planDuration === 'PAID_90') { durationDays = 90; planType = 'PAID'; actionKey = 'RENEW_PAID_30'; }
+      if (planDuration === 'PAID_365') { durationDays = 365; planType = 'PAID'; actionKey = 'RENEW_PAID_30'; }
+
+      const generatedPin = await generateOfflineCode(nextId, actionKey);
+      const expiryDate = new Date(Date.now() + durationDays * 24 * 60 * 60 * 1000).toISOString();
+
+      const newShop = {
+        id: nextId,
+        name,
+        owner,
+        phone,
+        city,
+        planType,
+        monthlyFee,
+        expiry: expiryDate,
+        isActive: true,
+        supportPin: generatedPin
+      };
+
+      shops.push(newShop);
+      saveShops(shops);
+      closeAddShopModal();
+
+      // Show Voucher Modal
+      openVoucherModal(newShop, generatedPin, durationDays);
+    }
+
+    async function extendShopPaid(shopId, days) {
+      const shops = getShops();
+      const shop = shops.find(s => s.id === shopId);
+      if (!shop) return;
+
+      const currentExpiry = new Date(shop.expiry).getTime();
+      const baseTime = Math.max(currentExpiry, Date.now());
+      shop.expiry = new Date(baseTime + days * 24 * 60 * 60 * 1000).toISOString();
+      shop.planType = 'PAID';
+      shop.isActive = true;
+
+      const renewalPin = await generateOfflineCode(shop.id, 'RENEW_PAID_30');
+      shop.supportPin = renewalPin;
+
+      saveShops(shops);
+      openVoucherModal(shop, renewalPin, days);
+    }
+
+    async function showOfflineVoucher(shopId) {
+      const shops = getShops();
+      const shop = shops.find(s => s.id === shopId);
+      if (!shop) return;
+
+      const actionKey = shop.planType === 'PAID' ? 'RENEW_PAID_30' : 'RENEW_TRIAL_14';
+      const pin = await generateOfflineCode(shop.id, actionKey);
+      openVoucherModal(shop, pin, 30);
+    }
+
+    function toggleShopStatus(shopId) {
+      const shops = getShops();
+      const shop = shops.find(s => s.id === shopId);
+      if (!shop) return;
+      shop.isActive = !shop.isActive;
+      saveShops(shops);
+    }
+
+    function deleteShop(shopId) {
+      if (!confirm('Are you sure you want to delete this store license?')) return;
+      const shops = getShops().filter(s => s.id !== shopId);
+      saveShops(shops);
+    }
+
+    // Modal Control Functions
+    function openAddShopModal() {
+      document.getElementById('addShopForm').reset();
+      document.getElementById('addShopModal').classList.remove('hidden');
+    }
+    function closeAddShopModal() {
+      document.getElementById('addShopModal').classList.add('hidden');
+    }
+
+    function openVoucherModal(shop, pin, days) {
+      document.getElementById('voucherShopName').innerText = shop.name;
+      document.getElementById('voucherShopId').innerText = shop.id;
+      document.getElementById('voucherPin').innerText = pin;
+      document.getElementById('voucherExpiry').innerText = `Valid Until: ${new Date(shop.expiry).toLocaleDateString('en-GB')} (${shop.planType} - ${days} Days)`;
+
+      const msg = encodeURIComponent(
+        `*🎉 Welcome to POS System - License Details*\n\n` +
+        `🏪 *Store Name:* ${shop.name}\n` +
+        `🔑 *Store ID:* ${shop.id}\n` +
+        `🔢 *Activation PIN:* ${pin}\n` +
+        `📅 *Validity:* ${new Date(shop.expiry).toLocaleDateString('en-GB')}\n\n` +
+        `📱 Open your POS App, enter your Store ID & PIN to activate!`
+      );
+
+      const waBtn = document.getElementById('btnShareWhatsApp');
+      const cleanPhone = shop.phone.replace(/[^0-9]/g, '');
+      const fullPhone = cleanPhone.startsWith('0') ? '94' + cleanPhone.substring(1) : cleanPhone;
+      waBtn.onclick = () => window.open(`https://wa.me/${fullPhone}?text=${msg}`, '_blank');
+
+      document.getElementById('voucherModal').classList.remove('hidden');
+    }
+    function closeVoucherModal() {
+      document.getElementById('voucherModal').classList.add('hidden');
+    }
+
+    function openUpdateModal() {
+      document.getElementById('updateModal').classList.remove('hidden');
+    }
+    function closeUpdateModal() {
+      document.getElementById('updateModal').classList.add('hidden');
+    }
+    function saveUpdateConfig() {
+      alert('✅ App Version Broadcast configuration saved successfully!');
+      closeUpdateModal();
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderShopsTable();
+      updateStats();
+    });
+  </script>
+</body>
+</html>

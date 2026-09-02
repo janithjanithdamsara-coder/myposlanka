@@ -1,0 +1,68 @@
+name: Android POS - Build & Release APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: 📱 Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: 🔑 Grant Execute Permission to Gradle Wrapper
+        run: chmod +x gradlew
+
+      - name: 🧪 Run Unit Tests & Lint Checks
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: 🔨 Build Debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: 📦 Rename & Prepare APK Artifact
+        run: |
+          mkdir -p build_output
+          cp app/build/outputs/apk/debug/app-debug.apk build_output/possystem-latest.apk
+
+      - name: 📤 Upload APK Artifact to GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: POS-System-Android-APK
+          path: build_output/possystem-latest.apk
+          retention-days: 30
+
+      # Create Official GitHub Release if a Git Tag (e.g., v1.0.0) is pushed
+      - name: 🚀 Publish GitHub Release (On Version Tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build_output/possystem-latest.apk
+          name: "POS Lanka Release ${{ github.ref_name }}"
+          body: |
+            ## 🎉 POS Lanka Android System Release ${{ github.ref_name }}
+            
+            ### 📱 What's Included:
+            * Multi-Industry POS Profiles (Retail, Pharmacy, Restaurant, Fashion, Hardware)
+            * 100% Offline Billing & Barcode Scanning
+            * Cloud Licensing & Remote Hub Sync
+            
+            📥 **Download APK:** [`possystem-latest.apk`](build_output/possystem-latest.apk)
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

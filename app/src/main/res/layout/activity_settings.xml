@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/green_bg_light"
+    android:orientation="vertical">
+
+    <!-- Standard Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_primary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/btnBackSettings"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_dashboard"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="System Settings / සැකසීම්"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 1. Shop Details -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏪 Shop Details / කඩේ විස්තර"
+                android:textColor="@color/green_primary_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etSettingsShopName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_search_pill"
+                android:hint="Shop Name (e.g. ABC Mini Mart)"
+                android:inputType="text"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="#6B7280"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/etSettingsShopAddress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_search_pill"
+                android:hint="Shop Address (e.g. High Level Rd, Nugegoda)"
+                android:inputType="text"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="#6B7280"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/etSettingsShopPhone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_search_pill"
+                android:hint="Phone Number (e.g. 011-2345678)"
+                android:inputType="phone"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="#6B7280"
+                android:textSize="14sp" />
+
+            <!-- 2. Printer & Receipt -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="🖨️ Printer &amp; Receipt Settings"
+                android:textColor="@color/green_primary_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etSettingsReceiptFooter"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_search_pill"
+                android:hint="Receipt Footer Note (e.g. Thank You!)"
+                android:inputType="text"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="#6B7280"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnConnectBluetoothPrinter"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:text="🖨️ Connect Bluetooth Thermal Printer"
+                android:textColor="@color/green_primary"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/green_primary" />
+
+            <!-- 3. Local Data Backup & Export -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="💾 Local Data Backup &amp; Export"
+                android:textColor="@color/green_primary_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnExportJsonBackup"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:text="💾 EXPORT JSON DATABASE BACKUP"
+                android:textColor="@color/green_primary"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/green_primary" />
+
+            <!-- Save Settings Button -->
+            <Button
+                android:id="@+id/btnSaveSettings"
+                style="@style/GreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:text="SAVE SYSTEM SETTINGS"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

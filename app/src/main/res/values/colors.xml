@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Master Brand Green Palette for Retail POS -->
+    <color name="green_primary">#238B3D</color>
+    <color name="green_primary_dark">#176B2C</color>
+    <color name="green_primary_light">#34A853</color>
+    <color name="green_accent">#4CAF50</color>
+    <color name="green_bg_light">#F7F9F7</color>
+    <color name="green_card_bg">#EAF6EC</color>
+    <color name="green_tint_light">#C8E6C9</color>
+    
+    <!-- Standard Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#202124</color>
+    <color name="text_primary">#202124</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+    <color name="divider_color">#E5E7EB</color>
+    <color name="gray_border">#E5E7EB</color>
+    <color name="card_stroke">#E5E7EB</color>
+
+    <!-- Status & Alert Colors -->
+    <color name="red_alert">#DC3545</color>
+    <color name="red_light_bg">#FDF2F2</color>
+    <color name="orange_warning">#F59E0B</color>
+    <color name="orange_light_bg">#FEF3C7</color>
+    <color name="blue_info">#2563EB</color>
+    <color name="blue_light_bg">#EFF6FF</color>
+</resources>

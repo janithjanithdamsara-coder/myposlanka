@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Dashboard / Home" />
+        <item
+            android:id="@+id/nav_pos"
+            android:icon="@drawable/ic_pos"
+            android:title="POS Billing / New Sale" />
+        <item
+            android:id="@+id/nav_products"
+            android:icon="@drawable/ic_inventory"
+            android:title="Products Catalog" />
+        <item
+            android:id="@+id/nav_inventory"
+            android:icon="@drawable/ic_warning"
+            android:title="Inventory &amp; Stock Alerts" />
+        <item
+            android:id="@+id/nav_purchases"
+            android:icon="@drawable/ic_receipt"
+            android:title="Purchases History" />
+    </group>
+
+    <item android:title="Finance &amp; Accounts">
+        <menu>
+            <item
+                android:id="@+id/nav_credit"
+                android:icon="@drawable/ic_person"
+                android:title="Customer Credit (ණය පොත)" />
+            <item
+                android:id="@+id/nav_customers"
+                android:icon="@drawable/ic_person"
+                android:title="Customers Directory" />
+            <item
+                android:id="@+id/nav_expenses"
+                android:icon="@drawable/ic_trending_up"
+                android:title="Expense Tracker" />
+        </menu>
+    </item>
+
+    <item android:title="System &amp; Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_reports"
+                android:icon="@drawable/ic_dashboard"
+                android:title="Reports &amp; Analytics" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_person"
+                android:title="Shop Settings" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_person"
+                android:title="Logout / Switch User" />
+        </menu>
+    </item>
+</menu>
+
+
+

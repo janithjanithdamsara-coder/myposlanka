@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F9F4"
+    android:padding="24dp">
+
+    <!-- මාතෘකාව -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="නව භාණ්ඩයක් ඇතුලත් කරන්න"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"/>
+
+    <!-- Barcode එක සහ Scan බොත්තම -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/etAddBarcode"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:hint="බාර්කෝඩ් අංකය"
+            android:inputType="number"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <Button
+            android:id="@+id/btnScanBarcode"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#2E7D32"
+            android:text="Scan"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <!-- භාණ්ඩයේ නම -->
+    <EditText
+        android:id="@+id/etAddName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:hint="භාණ්ඩයේ නම (උදා: කිරිපිටි 400g)"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- භාණ්ඩයේ මිල -->
+    <EditText
+        android:id="@+id/etAddPrice"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:hint="විකුණන මිල (Rs)"
+        android:inputType="numberDecimal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- තොග ප්‍රමාණය (Stock) -->
+    <EditText
+        android:id="@+id/etAddStock"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:hint="ඇතුලත් කරන ප්‍රමාණය (Stock Qty)"
+        android:inputType="number"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- Save බොත්තම -->
+    <Button
+        android:id="@+id/btnSaveItem"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:backgroundTint="#4CAF50"
+        android:text="භාණ්ඩය සේව් කරන්න"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

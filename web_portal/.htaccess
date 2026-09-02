@@ -1,0 +1,21 @@
+# POS Lanka Production Apache / LiteSpeed Configuration
+# -------------------------------------------------------------
+
+# Enable UTF-8 encoding
+AddDefaultCharset UTF-8
+
+# Prevent directory indexing
+Options -Indexes
+
+# Security: Protect sensitive configuration files
+<FilesMatch "^(schema\.sql|\.env|composer\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Optimize PHP Uploads for Logo and APK Files (if server allows php_value)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 64M
+    php_value post_max_size 64M
+    php_value memory_limit 128M
+</IfModule>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header Title & Subtotal Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Checkout Payment / මුදල් ගෙවීම"
+                android:textColor="@color/green_primary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPrinterReadyStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_in_stock"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="Printer ready"
+                android:textColor="@color/green_primary_dark"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Total Bill Amount Highlight (Curved Container) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_badge_in_stock"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PAYABLE TOTAL:"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvPaymentDialogTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="LKR 3,150.00"
+                android:textColor="@color/green_primary_dark"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Discount Input Box with LKR vs % Toggle (As shown in video) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Discount (වට්ටම්):"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etDiscountValue"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_pill"
+                android:hint="e.g. 10 or 100"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="#757575"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- LKR vs % Toggle Buttons -->
+            <Button
+                android:id="@+id/btnToggleDiscountLKR"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="@color/green_primary"
+                android:text="LKR"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="14dp" />
+
+            <Button
+                android:id="@+id/btnToggleDiscountPercent"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="4dp"
+                android:text="%"
+                android:textColor="@color/green_primary"
+                android:textSize="12sp"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/green_primary" />
+        </LinearLayout>
+
+        <!-- Payment Method Selector (CASH, CARD, CREDIT) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Payment Method:"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnPayCash"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green_primary"
+                android:padding="0dp"
+                android:text="💵 CASH"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="14dp" />
+
+            <Button
+                android:id="@+id/btnPayCard"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="💳 CARD"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                app:cornerRadius="14dp" />
+
+            <Button
+                android:id="@+id/btnPayCredit"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="🤝 CREDIT"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                app:cornerRadius="14dp" />
+        </LinearLayout>
+
+        <!-- Customer Received Cash Amount Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Customer Cash Received (LKR):"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etCashReceived"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_search_pill"
+            android:gravity="center"
+            android:hint="e.g. 5000"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textColorHint="#757575"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Quick Cash Denominations (500, 1000, 2000, 5000) Pills -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnQuickCash500"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="500"
+                android:textSize="11sp"
+                app:cornerRadius="14dp" />
+
+            <Button
+                android:id="@+id/btnQuickCash1000"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="1,000"
+                android:textSize="11sp"
+                app:cornerRadius="14dp" />
+
+            <Button
+                android:id="@+id/btnQuickCash2000"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="2,000"
+                android:textSize="11sp"
+                app:cornerRadius="14dp" />
+
+            <Button
+                android:id="@+id/btnQuickCash5000"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="5,000"
+                android:textSize="11sp"
+                app:cornerRadius="14dp" />
+        </LinearLayout>
+
+        <!-- Balance / Change Output Box -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_card_curved"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balance to Return: "
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvChangeBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LKR 0.00"
+                android:textColor="@color/green_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Complete Sale Checkout Button -->
+        <Button
+            android:id="@+id/btnCompleteSaleAction"
+            style="@style/GreenButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="18dp"
+            android:text="CHECKOUT LKR 3,150.00"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

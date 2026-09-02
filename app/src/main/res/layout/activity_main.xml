@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F9F4"
+    android:padding="16dp">
+    <!-- ඉහත #F4F9F4 මගින් ලා කොළ/සුදු පසුබිමක් ලබා දෙයි -->
+
+    <!-- 1. ඉහළ කොටස: Search Bar සහ Scan බොත්තම -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Search Bar එක -->
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:hint="භාණ්ඩය සොයන්න..."
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#333333" />
+
+        <!-- Scan බොත්තම -->
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#2E7D32"
+            android:text="Scan"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <!-- 2. මැද කොටස: භාණ්ඩ පෙන්වන ලැයිස්තුව -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:padding="8dp"/>
+
+    <!-- 3. පහළ කොටස: මුළු මුදල සහ ගෙවීමේ බොත්තම -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- මුළු මුදල පෙන්වන තැන -->
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total: Rs 0.00"
+            android:textColor="#2E7D32"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- ගෙවන්න බොත්තම -->
+        <Button
+            android:id="@+id/btnPay"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Pay"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>

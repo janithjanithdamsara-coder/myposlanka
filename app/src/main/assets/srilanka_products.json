@@ -1,0 +1,41 @@
+[
+  {"barcode": "4791066101072", "name": "Elephant House Soda 1L", "purchasePrice": 160.0, "sellingPrice": 200.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+  {"barcode": "4791066100013", "name": "Elephant House Cream Soda 1.5L", "purchasePrice": 220.0, "sellingPrice": 270.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+  {"barcode": "4791066100020", "name": "Elephant House Necto 1.5L", "purchasePrice": 220.0, "sellingPrice": 270.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+  {"barcode": "4791066100037", "name": "Elephant House Orange Barley 1.5L", "purchasePrice": 220.0, "sellingPrice": 270.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+  
+  {"barcode": "4792018000010", "name": "Anchor Full Cream Milk Powder 400g", "purchasePrice": 1050.0, "sellingPrice": 1150.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 40.0},
+  {"barcode": "4792018000027", "name": "Anchor Full Cream Milk Powder 1kg", "purchasePrice": 2500.0, "sellingPrice": 2750.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 30.0},
+
+  {"barcode": "4791017000011", "name": "Munchee Super Cream Cracker 190g", "purchasePrice": 210.0, "sellingPrice": 240.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 60.0},
+  {"barcode": "4791017000028", "name": "Munchee Hawaii Biscuits 200g", "purchasePrice": 180.0, "sellingPrice": 220.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 40.0},
+  {"barcode": "4791017000035", "name": "Munchee Chocolate Biscuits 200g", "purchasePrice": 200.0, "sellingPrice": 240.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 40.0},
+
+  {"barcode": "4791008000015", "name": "Maliban Gold Marie 80g", "purchasePrice": 85.0, "sellingPrice": 100.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 80.0},
+  {"barcode": "4791008000022", "name": "Maliban Cream Cracker 190g", "purchasePrice": 210.0, "sellingPrice": 240.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+  {"barcode": "4791008000039", "name": "Maliban Real Chocolate Cream 100g", "purchasePrice": 120.0, "sellingPrice": 140.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+
+  {"barcode": "4793001169901", "name": "Harischandra Coffee Powder 100g", "purchasePrice": 320.0, "sellingPrice": 380.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 30.0},
+  {"barcode": "4793001169918", "name": "Harischandra Kurakkan Flour 400g", "purchasePrice": 240.0, "sellingPrice": 290.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 25.0},
+  {"barcode": "4793001169925", "name": "Harischandra Noodle Pack 400g", "purchasePrice": 260.0, "sellingPrice": 310.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 35.0},
+
+  {"barcode": "4792003000018", "name": "Highland Fresh Milk 1L", "purchasePrice": 420.0, "sellingPrice": 480.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 20.0},
+  {"barcode": "4792003000025", "name": "Highland Salted Butter 200g", "purchasePrice": 750.0, "sellingPrice": 850.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 15.0},
+  {"barcode": "4792004000017", "name": "Pelwatte Full Cream Milk Powder 400g", "purchasePrice": 980.0, "sellingPrice": 1080.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 30.0},
+
+  {"barcode": "4791022000013", "name": "Sunlight Soap Bar 100g", "purchasePrice": 90.0, "sellingPrice": 110.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 100.0},
+  {"barcode": "4791022000020", "name": "Vim Dishwash Bar 110g", "purchasePrice": 70.0, "sellingPrice": 85.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 80.0},
+  {"barcode": "4791022000037", "name": "Signal Toothpaste 120g", "purchasePrice": 180.0, "sellingPrice": 220.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+
+  {"barcode": "4791033000011", "name": "Nestle Milo Powder 400g", "purchasePrice": 1100.0, "sellingPrice": 1250.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 40.0},
+  {"barcode": "4791033000028", "name": "Nestle Maggi Chicken Noodle 73g", "purchasePrice": 110.0, "sellingPrice": 130.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 100.0},
+
+  {"barcode": "4791025000019", "name": "Prima All Purpose Wheat Flour 1kg", "purchasePrice": 210.0, "sellingPrice": 240.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 50.0},
+  {"barcode": "4791005000014", "name": "Kist Tomato Sauce 400g", "purchasePrice": 420.0, "sellingPrice": 490.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 30.0},
+  {"barcode": "4791001000016", "name": "Dilmah Pure Ceylon Tea 100g", "purchasePrice": 350.0, "sellingPrice": 420.0, "unit": "pcs", "isWeightBased": false, "stockQuantity": 40.0},
+
+  {"barcode": "1001", "name": "Samba Rice 1kg", "purchasePrice": 210.0, "sellingPrice": 240.0, "unit": "kg", "isWeightBased": true, "stockQuantity": 100.0},
+  {"barcode": "1002", "name": "White Sugar 1kg", "purchasePrice": 260.0, "sellingPrice": 290.0, "unit": "kg", "isWeightBased": true, "stockQuantity": 100.0},
+  {"barcode": "1003", "name": "Red Dhal (මයිසූර් පරිප්පු) 1kg", "purchasePrice": 310.0, "sellingPrice": 360.0, "unit": "kg", "isWeightBased": true, "stockQuantity": 80.0},
+  {"barcode": "1004", "name": "Nadu Rice 1kg", "purchasePrice": 200.0, "sellingPrice": 230.0, "unit": "kg", "isWeightBased": true, "stockQuantity": 100.0}
+]

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_green_gradient"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Store Branding Card (22dp Curved Card) -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Logo Placeholder -->
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/bg_badge_in_stock"
+                android:padding="16dp"
+                android:src="@drawable/ic_pos"
+                app:tint="@color/green_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="RETAIL SHOP POS"
+                android:textColor="@color/green_primary_dark"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Sign in to access counter system"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <!-- Account Role Toggle (Cashier vs Admin Owner) -->
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/roleToggleGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/btnRoleCashier"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/green_primary"
+                    android:text="👤 Cashier"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:cornerRadius="14dp" />
+
+                <Button
+                    android:id="@+id/btnRoleAdmin"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:text="🔑 Admin Owner"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    app:cornerRadius="14dp" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <!-- Username / Email Input -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="16dp"
+                android:text="Username / PIN:"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etLoginUsername"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_search_pill"
+                android:hint="Enter Username or Cashier ID"
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <!-- Password Input with Eye Icon Toggle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="12dp"
+                android:text="Password:"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_search_pill">
+
+                <EditText
+                    android:id="@+id/etLoginPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/btnTogglePasswordEye"
+                    android:background="@null"
+                    android:hint="Enter Password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/btnTogglePasswordEye"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="6dp"
+                    android:contentDescription="Toggle Password Visibility"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_eye"
+                    app:tint="@color/green_primary" />
+            </RelativeLayout>
+
+            <!-- Login Action Button (24dp Pill Button) -->
+            <Button
+                android:id="@+id/btnLoginSubmit"
+                style="@style/GreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="24dp"
+                android:text="LOGIN TO SYSTEM"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- Fingerprint Biometric Login Button -->
+            <Button
+                android:id="@+id/btnFingerprintLogin"
+                style="@style/OutlinedGreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:text="☝️ Fingerprint Login / ඇඟිලි සලකුණින්"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
