@@ -217,6 +217,12 @@ $apk_url = !empty($config['apk_download_url']) ? $config['apk_download_url'] : '
           ⚡ 100% Offline-First POS System
         </div>
 
+        <!-- 🚀 LIVE UPDATE TEST BANNER -->
+        <div class="p-3 bg-amber-400 text-slate-950 font-black text-center text-xs sm:text-sm shadow-lg rounded-2xl border-2 border-amber-300 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-bolt text-slate-900 text-base"></i>
+          <span>GitHub CI/CD Live Auto-Update Verified! (පද්ධතිය සාර්ථකව Live Update විය)</span>
+        </div>
+
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
           Smart Retail POS Software for Modern Sri Lankan Stores
         </h1>
