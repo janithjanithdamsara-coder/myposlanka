@@ -111,8 +111,17 @@ $apk_url = !empty($config['apk_download_url']) ? $config['apk_download_url'] : '
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(34, 197, 94, 0.2);
     }
   </style>
-</head>
 <body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- 🚨 TOP BIG TEST H1 BANNER -->
+  <div class="bg-red-600 text-white text-center py-4 px-4 shadow-2xl border-b-4 border-yellow-400">
+    <h1 class="text-2xl sm:text-4xl font-black tracking-widest uppercase animate-pulse">
+      🔥 TEST: LIVE CI/CD DEPLOYMENT SUCCESSFUL 🔥
+    </h1>
+    <p class="text-xs sm:text-sm font-bold text-yellow-300 mt-1">
+      මෙම වෙබ් අඩවිය GitHub Actions හරහා ස්වයංක්‍රීයව Live Update විය!
+    </p>
+  </div>
 
   <!-- HEADER / TOP NAV (No Direct APK Download, Directs to Trial) -->
   <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-sm">
