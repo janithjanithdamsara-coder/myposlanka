@@ -53,7 +53,7 @@ jobs:
           port: 21
           security: loose
           local-dir: ./web_portal/
-          server-dir: ${{ secrets.FTP_REMOTE_DIR || 'myposlanka.sahashrajanith.site/' }}
+          server-dir: myposlanka.sahashrajanith.site/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
