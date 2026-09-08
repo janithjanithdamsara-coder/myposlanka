@@ -70,9 +70,10 @@
 
                 <!-- Shop Name Header -->
                 <TextView
+                    android:id="@+id/tvReceiptShopName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ABC MINI MART"
+                    android:text="ABC RETAIL MART"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />

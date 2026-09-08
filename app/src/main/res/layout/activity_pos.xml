@@ -7,10 +7,11 @@
     android:background="@color/green_bg_light"
     android:orientation="vertical">
 
-    <!-- Top Embedded Camera Scanner Viewfinder (Matches Screen Recording) -->
+    <!-- Top Embedded Camera Scanner Viewfinder -->
     <RelativeLayout
+        android:id="@+id/layoutScannerContainer"
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="140dp"
         android:background="#1B5E20">
 
         <com.journeyapps.barcodescanner.DecoratedBarcodeView

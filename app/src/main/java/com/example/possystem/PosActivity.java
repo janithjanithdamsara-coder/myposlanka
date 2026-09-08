@@ -107,8 +107,27 @@ public class PosActivity extends AppCompatActivity implements NavigationView.OnN
             btnBack.setOnClickListener(v -> finish());
         }
 
+        View layoutScannerContainer = findViewById(R.id.layoutScannerContainer);
         if (btnScanBarcode != null) {
-            btnScanBarcode.setOnClickListener(v -> launchCameraBarcodeScanner());
+            btnScanBarcode.setOnClickListener(v -> {
+                if (layoutScannerContainer != null) {
+                    if (layoutScannerContainer.getVisibility() == View.VISIBLE) {
+                        layoutScannerContainer.setVisibility(View.GONE);
+                        if (barcodeScannerView != null) barcodeScannerView.pause();
+                        Toast.makeText(PosActivity.this, "📷 Camera Scanner Hidden (Full Cart View)", Toast.LENGTH_SHORT).show();
+                    } else {
+                        layoutScannerContainer.setVisibility(View.VISIBLE);
+                        if (barcodeScannerView != null) barcodeScannerView.resume();
+                        Toast.makeText(PosActivity.this, "📷 Camera Scanner Active", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    launchCameraBarcodeScanner();
+                }
+            });
+            btnScanBarcode.setOnLongClickListener(v -> {
+                launchCameraBarcodeScanner();
+                return true;
+            });
         }
 
         // Top Checkout Fast Access Pill

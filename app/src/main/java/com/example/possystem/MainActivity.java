@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView tvShopTitle, tvShopSubtitle, tvLicenseStatusBadge;
     private View btnLicenseStatusBadge;
     private TextView tvLabelPOS, tvLabelProducts, tvLabelPurchases, tvLabelCredit, tvLabelExpenses, tvLabelReports;
+    private TextView tvTodaySalesTotal, tvOrdersCount, tvProfitEst, tvCashInHand, tvLowStockCount, tvExpiryCount;
+    private View btnLowStockAlert, btnExpiryAlert, ivSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvShopSubtitle = findViewById(R.id.tvShopSubtitle);
         tvLicenseStatusBadge = findViewById(R.id.tvLicenseStatusBadge);
         btnLicenseStatusBadge = findViewById(R.id.btnLicenseStatusBadge);
+        ivSettings = findViewById(R.id.ivSettings);
 
         tvLabelPOS = findViewById(R.id.tvLabelPOS);
         tvLabelProducts = findViewById(R.id.tvLabelProducts);
@@ -52,6 +55,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvLabelCredit = findViewById(R.id.tvLabelCredit);
         tvLabelExpenses = findViewById(R.id.tvLabelExpenses);
         tvLabelReports = findViewById(R.id.tvLabelReports);
+
+        tvTodaySalesTotal = findViewById(R.id.tvTodaySalesTotal);
+        tvOrdersCount = findViewById(R.id.tvOrdersCount);
+        tvProfitEst = findViewById(R.id.tvProfitEst);
+        tvCashInHand = findViewById(R.id.tvCashInHand);
+        tvLowStockCount = findViewById(R.id.tvLowStockCount);
+        tvExpiryCount = findViewById(R.id.tvExpiryCount);
+
+        btnLowStockAlert = findViewById(R.id.btnLowStockAlert);
+        btnExpiryAlert = findViewById(R.id.btnExpiryAlert);
 
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
@@ -64,6 +77,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
             });
+        }
+
+        // Settings Profile Button
+        if (ivSettings != null) {
+            ivSettings.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)));
+        }
+
+        // Low Stock Alert Box Navigation
+        if (btnLowStockAlert != null) {
+            btnLowStockAlert.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, InventoryActivity.class)));
+        }
+
+        // Expiry Alert Box Navigation
+        if (btnExpiryAlert != null) {
+            btnExpiryAlert.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, InventoryActivity.class)));
         }
 
         // Setup Bottom Navigation Bar Item Click Listener
@@ -99,11 +127,78 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 setupLicenseStatus();
                 setupDashboardCards();
+                loadLiveDashboardMetrics();
             }
         });
 
         setupLicenseStatus();
         setupDashboardCards();
+        loadLiveDashboardMetrics();
+    }
+
+    private void loadLiveDashboardMetrics() {
+        java.util.concurrent.Executors.newSingleThreadExecutor().execute(() -> {
+            try {
+                com.example.possystem.data.AppDatabase db = com.example.possystem.data.AppDatabase.getInstance(getApplicationContext());
+                java.util.List<com.example.possystem.data.entity.SaleEntity> sales = db.saleDao().getAllSales();
+                
+                double totalSales = 0.0;
+                double totalCash = 0.0;
+                int ordersCount = 0;
+                double estimatedProfit = 0.0;
+
+                if (sales != null) {
+                    ordersCount = sales.size();
+                    for (com.example.possystem.data.entity.SaleEntity s : sales) {
+                        totalSales += s.total;
+                        if ("Cash".equalsIgnoreCase(s.paymentMethod)) {
+                            totalCash += s.total;
+                        }
+                    }
+                    // Estimate retail profit margin ~22%
+                    estimatedProfit = totalSales * 0.22;
+                }
+
+                int lowStock = db.productDao().getLowStockCount();
+                int expiring = db.productDao().getExpiringCount();
+
+                final double fTotalSales = totalSales;
+                final double fTotalCash = totalCash;
+                final int fOrdersCount = ordersCount;
+                final double fProfit = estimatedProfit;
+                final int fLowStock = lowStock;
+                final int fExpiring = expiring;
+
+                runOnUiThread(() -> {
+                    if (tvTodaySalesTotal != null) {
+                        tvTodaySalesTotal.setText(String.format(java.util.Locale.US, "LKR %.2f", fTotalSales));
+                    }
+                    if (tvOrdersCount != null) {
+                        tvOrdersCount.setText(String.valueOf(fOrdersCount));
+                    }
+                    if (tvProfitEst != null) {
+                        if (fProfit >= 1000) {
+                            tvProfitEst.setText(String.format(java.util.Locale.US, "LKR %.1fK", fProfit / 1000.0));
+                        } else {
+                            tvProfitEst.setText(String.format(java.util.Locale.US, "LKR %.0f", fProfit));
+                        }
+                    }
+                    if (tvCashInHand != null) {
+                        if (fTotalCash >= 1000) {
+                            tvCashInHand.setText(String.format(java.util.Locale.US, "LKR %.1fK", fTotalCash / 1000.0));
+                        } else {
+                            tvCashInHand.setText(String.format(java.util.Locale.US, "LKR %.0f", fTotalCash));
+                        }
+                    }
+                    if (tvLowStockCount != null) {
+                        tvLowStockCount.setText(fLowStock + " Items");
+                    }
+                    if (tvExpiryCount != null) {
+                        tvExpiryCount.setText(fExpiring + " Items");
+                    }
+                });
+            } catch (Exception ignored) {}
+        });
     }
 
     private void setupLicenseStatus() {
