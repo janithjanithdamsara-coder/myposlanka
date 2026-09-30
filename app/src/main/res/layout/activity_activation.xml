@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Activate your store to start billing"
-                android:textColor="#C8E6C9"
+                android:textColor="@color/green_tint_light"
                 android:textSize="13sp" />
         </LinearLayout>
 

@@ -1,12 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme forced to Light for consistent retail UI -->
     <style name="Base.Theme.PosSystem" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/green_primary</item>
-        <item name="colorPrimaryVariant">@color/green_primary_dark</item>
+        <!-- Primary brand color: Deep Slate for toolbars and structural surfaces -->
+        <item name="colorPrimary">@color/slate_primary</item>
+        <item name="colorPrimaryVariant">@color/slate_surface</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/green_primary_light</item>
+        <!-- Secondary brand color: Electric Emerald for action triggers & highlights -->
+        <item name="colorSecondary">@color/green_primary</item>
         <item name="colorSecondaryVariant">@color/green_primary_dark</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Surface colors forced to white -->
@@ -15,11 +15,11 @@
         <item name="colorSurfaceContainerLow">@color/white</item>
         <item name="colorSurfaceContainerHigh">@color/white</item>
         <item name="colorSurfaceContainerHighest">@color/white</item>
-        <!-- Status bar color -->
-        <item name="android:statusBarColor">@color/green_primary_dark</item>
+        <!-- Status bar color: Seamless deep slate -->
+        <item name="android:statusBarColor">@color/slate_primary</item>
         <!-- Text & Hint Colors -->
-        <item name="android:textColorHint">#6B7280</item>
-        <item name="android:editTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:editTextColor">@color/text_primary</item>
         <!-- Background color -->
         <item name="android:windowBackground">@color/green_bg_light</item>
     </style>
@@ -29,8 +29,8 @@
     <!-- Splash Screen Theme -->
     <style name="Theme.Splash" parent="Base.Theme.PosSystem">
         <item name="android:windowBackground">@drawable/bg_green_gradient</item>
-        <item name="android:statusBarColor">@color/green_primary_dark</item>
-        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/green_primary_dark</item>
+        <item name="android:statusBarColor">@color/slate_primary</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/slate_primary</item>
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@android:color/transparent</item>
     </style>
 

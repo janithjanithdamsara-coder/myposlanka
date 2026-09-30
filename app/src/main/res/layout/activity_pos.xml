@@ -12,7 +12,7 @@
         android:id="@+id/layoutScannerContainer"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="#1B5E20">
+        android:background="@color/slate_primary">
 
         <com.journeyapps.barcodescanner.DecoratedBarcodeView
             android:id="@+id/barcodeScannerView"
@@ -40,7 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_primary"
+        android:background="@color/slate_primary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"

@@ -11,7 +11,7 @@
         android:id="@+id/headerProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_primary"
+        android:background="@color/slate_primary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="16dp"
